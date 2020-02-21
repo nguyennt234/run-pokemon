@@ -17,9 +17,9 @@ module.exports = async (req, res) => {
     });
     console.log(`Firestore initialized ${db}`);
 
-    const docRef = db.collection("assets").doc("FI0009005318");
+    const docRef = await db.collection("assets").doc("FI0009005318");
 
-    const setNRE1V = docRef.set({
+    await docRef.set({
       isin: "FI0009005318",
       basicinfo: {
         exchange: "XHEL",
@@ -30,9 +30,9 @@ module.exports = async (req, res) => {
       }
     });
 
-    const docRef2 = db.collection("assets").doc("FI0009000681");
+    const docRef2 = await db.collection("assets").doc("FI0009000681");
 
-    docRef2.set({
+    await docRef2.set({
       isin: "FI0009000681",
       basicinfo: {
         exchange: "XHEL",
@@ -43,9 +43,9 @@ module.exports = async (req, res) => {
       }
     });
 
-    const docRef3 = db.collection("assets").doc("FI123456789");
+    const docRef3 = await db.collection("assets").doc("FI123456789");
 
-    docRef3.set({
+    await docRef3.set({
       isin: "FI123456789",
       basicinfo: {
         exchange: "XHEL",
@@ -56,7 +56,8 @@ module.exports = async (req, res) => {
       }
     });
 
-    db.collection("assets")
+    await db
+      .collection("assets")
       .get()
       .then(snapshot => {
         snapshot.forEach(doc => {
@@ -70,4 +71,6 @@ module.exports = async (req, res) => {
     console.log("Failed to initiate Firestore", err);
     res.end(`Failed to initiate Firestore: ${err}`);
   }
+
+  res.end(`Hello from node.js and firestore-integration on Now 2.0!`);
 };
