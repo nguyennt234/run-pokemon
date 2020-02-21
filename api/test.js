@@ -9,7 +9,7 @@ const gcloudKeyfile = fromB64(process.env.GCLOUD_CREDENTIALS);
 
 console.log(gcloudKeyfile);
 
-const testDB = async () => {
+module.exports = async (req, res) => {
   try {
     const db = new Firestore({
       projectId: "run-pokemon-web",
@@ -70,8 +70,4 @@ const testDB = async () => {
     console.log("Failed to initiate Firestore", err);
     res.end(`Failed to initiate Firestore: ${err}`);
   }
-};
-
-module.exports = {
-  testDB
 };
