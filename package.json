@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@google-cloud/firestore": "^3.5.1",
+    "mongodb": "^3.5.4",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "^3.4.0"
